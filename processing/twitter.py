@@ -1,9 +1,13 @@
 
 import csv
 
+import sys
+
+sys.path.insert(1, '../config/')
+
 def get_stopwords():
     
-    with open('./assets/csv files/twitterStopWords.csv', newline='') as f:
+    with open('../assets/csv files/twitterStopWords.csv', newline='') as f:
 
         reader = csv.reader(f)
 
@@ -37,7 +41,7 @@ class Tweets:
 
         config = self.configparser.ConfigParser()
 
-        config.read('./config/Twitter Keys.ini')
+        config.read('../config/Twitter Keys.ini')
 
         # Read the values
 

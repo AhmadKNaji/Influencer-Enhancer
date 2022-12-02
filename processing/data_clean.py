@@ -6,6 +6,7 @@ from twitter import get_stopwords
 
 import contractions
 
+
 # Create a function to clean the reviews. Remove profanity, unnecessary characters, spaces, and stopwords.
 
 def clean_tweet(tweet):
