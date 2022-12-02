@@ -1,3 +1,22 @@
+
+import csv
+
+def get_stopwords():
+    
+    with open('./assets/csv files/twitterStopWords.csv', newline='') as f:
+
+        reader = csv.reader(f)
+
+        data = list(reader)
+
+        twitter_stopwords = []
+
+        for d in data:
+
+            twitter_stopwords.append(d[0].replace(' ', ''))
+    
+    return twitter_stopwords
+
 class Tweets:
 
     import configparser
@@ -14,7 +33,7 @@ class Tweets:
 
         return self.username
 
-    def get_tweets(self):
+    def get_tweets(self, rows_of_data):
 
         config = self.configparser.ConfigParser()
 
@@ -39,10 +58,11 @@ class Tweets:
         api = self.tweepy.API(auth)
 
         # using get_user with id
+        # We use pagination since we can only pull a maximum of 200 tweets
 
         user_name = self.username
 
-        tweets = api.user_timeline(screen_name=user_name, count = 200,tweet_mode='extended')
+        paginated_tweets = self.tweepy.Cursor(api.user_timeline, screen_name = user_name, exclude_replies=True).items(rows_of_data)
 
         # create DataFrame
 
@@ -50,9 +70,9 @@ class Tweets:
 
         data = []
 
-        for tweet in tweets:
+        for status in paginated_tweets:
 
-            data.append([tweet.id, tweet.user.screen_name, tweet.full_text, tweet.created_at, tweet.retweet_count, tweet.favorite_count])
+            data.append([status.id, status.user.screen_name, status.text, status.created_at, status.retweet_count, status.favorite_count])
 
         df = self.pd.DataFrame(data, columns=columns)
 
