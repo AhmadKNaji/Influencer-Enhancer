@@ -41,7 +41,7 @@ def update(n_clicks):
         fig = make_subplots(
             rows=1, 
             cols=2, 
-            subplot_titles=("Montly Retweets Report", "Monthly Favorites Report")
+            subplot_titles=("Monthly Retweets Report", "Monthly Favorites Report")
         )
         fig.add_trace(
             go.Bar(
