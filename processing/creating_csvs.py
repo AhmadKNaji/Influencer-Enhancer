@@ -29,5 +29,3 @@ def update_tweets(nb):
     pd.DataFrame.to_csv(data_retweets, 'assets/csv files/data/retweets.csv')
 
     pd.DataFrame.to_csv(data_favorites, 'assets/csv files/data/favorites.csv')
-
-update_tweets(1000)
