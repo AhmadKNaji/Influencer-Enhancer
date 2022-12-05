@@ -1,4 +1,4 @@
-<!-- # Influencer Enhancer
+# Influencer Enhancer
 
 ### Description:
 
@@ -34,7 +34,7 @@ In addition, we used Elon Musk's tweets as our mock data.
 
 ### Model Building:
 
-We used two seperate models that have the same structure yet different outcomes. We instantiated an TF-IDF vectorizer to vectorize the tweets we have. We later feed these tweets to our two models with each targeting the number of favorites and number of retweets respectively. These two models are built using sklearn's Ridge regression. We later dump these models into pickle files for the dash app deployment. -->
+We used two seperate models that have the same structure yet different outcomes. We instantiated an TF-IDF vectorizer to vectorize the tweets we have. We later feed these tweets to our two models with each targeting the number of favorites and number of retweets respectively. These two models are built using sklearn's Ridge regression. We later dump these models into pickle files for the dash app deployment.
 
 ### Web app:
 
