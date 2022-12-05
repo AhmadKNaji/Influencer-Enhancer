@@ -1,35 +1,19 @@
 import re
-
 from nltk.stem.snowball import SnowballStemmer
-
 from twitter import get_stopwords
-
 import contractions
-
-
 # Create a function to clean the reviews. Remove profanity, unnecessary characters, spaces, and stopwords.
-
 def clean_tweet(tweet):
-    
     """
     This function unifies the tweets and stems the words.
-    
     params:
-    
-    review (string) : The string text we want to unify.
-    
+    tweet (string) : The string text we want to unify.
     return:
-    
-    r (string) : The unified version of the text input.
-    
+    res (string) : The unified version of the text input.
     """
-
     # remove urls from tweets
-
     r = re.sub(r'https?://\S+', "", tweet)
-
     # This is the compiled regex to remove emojis and other non interpretable characters
-
     emoj = re.compile("["
         u"\U0001F600-\U0001F64F"  # emoticons
         u"\U0001F300-\U0001F5FF"  # symbols & pictographs
@@ -50,51 +34,27 @@ def clean_tweet(tweet):
         u"\ufe0f"  # dingbats
         u"\u3030"
                     "]+", re.UNICODE)
-
     r = re.sub(emoj, '', r)
-
     # Remove tags from tweets
-
     r = re.sub("@[A-Za-z0-9_]+","", r)
-
     # Remove hashtag from tweets
-
     r = re.sub("#[A-Za-z0-9_]+","", r)
-
     # Remove trailing whitespace
-
     r = r.strip()
-
     # Expand contractions (He's -> He is)
-
     r = contractions.fix(r)
-    
     # Make the text all lower case
-    
     r = r.lower()
-
     # Remove characters that are not a number or a letter
-
     r = re.sub('\W+', ' ', r)
-    
     # Split the text into a list containing all the words
-    
     r = r.split()
-    
     # Create a new list of the words without the stop words
-    
     r = [w for w in r if not w in get_stopwords()]
-    
     # Create stemmer object
-    
     stemmer = SnowballStemmer("english")
-    
     # Stem words
-    
     sw = [stemmer.stem(w) for w in r]
-    
     # Joing stemmed and tokenized words
-    
     res = " ".join(sw)
-    
     return res
