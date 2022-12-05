@@ -1,13 +1,9 @@
 
 import csv
 
-import sys
-
-sys.path.insert(1, '../config/')
-
 def get_stopwords():
     
-    with open('../assets/csv files/twitterStopWords.csv', newline='') as f:
+    with open('assets/csv files/twitterStopWords.csv', newline='') as f:
 
         reader = csv.reader(f)
 
@@ -41,17 +37,19 @@ class Tweets:
 
         config = self.configparser.ConfigParser()
 
-        config.read('../config/Twitter Keys.ini')
+        config.read('twitter_keys.ini')
+
+        
 
         # Read the values
 
-        api_key = config['twitter']['api_key']
+        api_key = config['TWITTER']['api_key']
+        
+        api_key_secret = config['TWITTER']['api_key_secret']
 
-        api_key_secret = config['twitter']['api_key_secret']
+        access_token = config['TWITTER']['access_token']
 
-        access_token = config['twitter']['access_token']
-
-        access_token_secret = config['twitter']['access_token_secret']
+        access_token_secret = config['TWITTER']['access_token_secret']
 
         # Twitter Authentication
 
