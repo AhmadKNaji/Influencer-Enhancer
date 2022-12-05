@@ -27,9 +27,9 @@ app.layout = html.Div([
     html.A(html.Button('Update Tweets', id = 'tweet-update-event', style = {'position' : 'absolute', 'right': '10px'})),
 
     html.Div(id = 'prediction', children=[
-        html.Div(dcc.Textarea(id = 'input-box', value = "What's on your mind")),
-        html.Button('Predict Feedback', id = 'predict-button'),
-        html.Div(id = 'prediction-output', children='Enter tweet to predict feedback')
+        html.Div(dcc.Textarea(id = 'input-box', value = "What's on your mind"), style={'margin-top' : '1em'}),
+        html.Button('Predict Feedback', id = 'predict-button', style={'margin-top' : '1em'}),
+        html.Div(id = 'prediction-output', children='Enter tweet to predict feedback', style={'margin-top' : '1em'})
     ])
 
 ])
