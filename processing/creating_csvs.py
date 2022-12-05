@@ -1,7 +1,3 @@
-import sys
-
-sys.path.insert(1, '../processing')
-
 from twitter import Tweets
 
 from data_clean import clean_tweet
